@@ -10,49 +10,47 @@
         AllowsTransparency="True"
         Background="Transparent"
         Height="450" 
-        Width="800">
+        Width="700">
 
     <Window.Resources>
-        <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+        <Style x:Key="BaseButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#333"/>
             <Setter Property="Foreground" Value="#DDD"/>
             <Setter Property="FontSize" Value="27"/>
             <Setter Property="FontFamily" Value="Bahnschrift"/>
-
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border 
                             Background="{TemplateBinding Background}" 
-                            BorderBrush="#555" 
-                            BorderThickness="1">
-                            <ContentPresenter
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                            />
+                            BorderBrush="Transparent" 
+                            BorderThickness="0"
+                            Margin="1"
+                        >
+                    <ContentPresenter
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                    />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#222"/>
+                                <Setter Property="Background" Value="#444"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="ButtonEqStyle" TargetType="{x:Type Button}">
+        <Style x:Key="ButtonEqStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseButtonStyle}">
             <Setter Property="Background" Value="#8B008B"/>
-            <Setter Property="Foreground" Value="#DDD"/>
-            <Setter Property="FontSize" Value="27"/>
-            <Setter Property="FontFamily" Value="Bahnschrift"/>
-
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border 
                             Background="{TemplateBinding Background}" 
-                            BorderBrush="#555" 
-                            BorderThickness="1">
+                            BorderBrush="Transparent" 
+                            BorderThickness="0"
+                        >
                             <ContentPresenter
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
@@ -67,10 +65,61 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="MainTextBox" TargetType="{x:Type TextBox}">
-            <Setter Property="Background" Value="#333"/>
+        <Style x:Key="ButtonClearStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="Background" Value="#800000"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="Transparent" 
+                            BorderThickness="0"
+                            CornerRadius="8"
+                        >
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                            />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#5C0A0A"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonOperStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="Background" Value="#383838"/>
             <Setter Property="Foreground" Value="#DDD"/>
-            <Setter Property="FontSize" Value="45"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="Transparent" 
+                            BorderThickness="0"
+                            Margin="1"
+                        >
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                            />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#484848"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="MainTextBox" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="#444"/>
+            <Setter Property="Foreground" Value="#DDD"/>
+            <Setter Property="FontSize" Value="50"/>
             <Setter Property="FontFamily" Value="Bahnschrift"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="Margin" Value="10"/>
@@ -80,9 +129,9 @@
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
         <Style x:Key="EqTextBox" TargetType="{x:Type TextBox}">
-            <Setter Property="Background" Value="#333"/>
+            <Setter Property="Background" Value="#444"/>
             <Setter Property="Foreground" Value="#AAA"/>
-            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontSize" Value="25"/>
             <Setter Property="FontFamily" Value="Bahnschrift"/>
             <Setter Property="FontWeight" Value="Light"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -92,26 +141,21 @@
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
     </Window.Resources>
-    <Grid Background="#333">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <DockPanel Grid.Row="0" Background="Transparent" Height="30" MouseDown="DragWindow" Grid.ColumnSpan="4">
-            <TextBlock Text="UltraCalculator" Foreground="#DDD" VerticalAlignment="Center" Margin="10,0"/>
-            <Button
+    <Border>
+        <Grid Background="#444">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0" Background="Transparent" Height="30" MouseDown="DragWindow" Grid.ColumnSpan="5">
+                <TextBlock Text="UltraCalculator" Foreground="#DDD" VerticalAlignment="Center" Margin="10,0"/>
+                <Button
                 Content="X"
                 Width="40"
                 Background="Maroon"
@@ -124,39 +168,62 @@
                 HorizontalAlignment="Right"
                 Click="CloseApp"
             />
-        </DockPanel>
-        <TextBox
+            </DockPanel>
+            <TextBox
             Style="{StaticResource EqTextBox}"
             Grid.Row="1"
-            Grid.ColumnSpan="4"
+            Grid.ColumnSpan="5"
             Text="{Binding LastExpression}"
             IsReadOnly="True"
             Height="40"
         />
-        <TextBox 
+            <TextBox 
             Style="{StaticResource MainTextBox}"
             Grid.Row="2"
-            Grid.ColumnSpan="4"
+            Grid.ColumnSpan="5"
             Text="{Binding Display, Mode=OneWay}"
             IsReadOnly="True"
             Height="80"
         />
-        <Button Grid.Row="3" Grid.Column="0" Style="{StaticResource ButtonStyle}" Content="+" Command="{Binding OperationCommand}" CommandParameter="+"/>
-        <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource ButtonStyle}" Content="-" Command="{Binding OperationCommand}" CommandParameter="-"/>
-        <Button Grid.Row="3" Grid.Column="2" Style="{StaticResource ButtonStyle}" Content="x" Command="{Binding OperationCommand}" CommandParameter="x"/>
-        <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource ButtonStyle}" Content=":" Command="{Binding OperationCommand}" CommandParameter=":"/>
-        <Button Grid.Row="4" Grid.Column="0" Style="{StaticResource ButtonStyle}" Content="7" Command="{Binding NumberCommand}" CommandParameter="7"/>
-        <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource ButtonStyle}" Content="8" Command="{Binding NumberCommand}" CommandParameter="8"/>
-        <Button Grid.Row="4" Grid.Column="2" Style="{StaticResource ButtonStyle}" Content="9" Command="{Binding NumberCommand}" CommandParameter="9"/>
-        <Button Grid.Row="4" Grid.Column="3" Style="{StaticResource ButtonEqStyle}" Grid.RowSpan ="4" Content="=" Command="{Binding ConfirmationCommand}"/>
-        <Button Grid.Row="5" Grid.Column="0" Style="{StaticResource ButtonStyle}" Content="4" Command="{Binding NumberCommand}" CommandParameter="4"/>
-        <Button Grid.Row="5" Grid.Column="1" Style="{StaticResource ButtonStyle}" Content="5" Command="{Binding NumberCommand}" CommandParameter="5"/>
-        <Button Grid.Row="5" Grid.Column="2" Style="{StaticResource ButtonStyle}" Content="6" Command="{Binding NumberCommand}" CommandParameter="6"/>
-        <Button Grid.Row="6" Grid.Column="0" Style="{StaticResource ButtonStyle}" Content="1" Command="{Binding NumberCommand}" CommandParameter="1"/>
-        <Button Grid.Row="6" Grid.Column="1" Style="{StaticResource ButtonStyle}" Content="2" Command="{Binding NumberCommand}" CommandParameter="2"/>
-        <Button Grid.Row="6" Grid.Column="2" Style="{StaticResource ButtonStyle}" Content="3" Command="{Binding NumberCommand}" CommandParameter="3"/>
-        <Button Grid.Row="7" Grid.Column="0" Style="{StaticResource ButtonStyle}" Content="0" Command="{Binding NumberCommand}" CommandParameter="0"/>
-        <Button Grid.Row="7" Grid.Column="1" Style="{StaticResource ButtonStyle}" Content="." Command="{Binding NumberCommand}" CommandParameter="."/>
-        <Button Grid.Row="7" Grid.Column="2" Style="{StaticResource ButtonStyle}" Content="CE" Command="{Binding ClearCommand}" CommandParameter="CE"/>
-    </Grid>
+            <Grid Grid.Row="3" Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource ButtonEqStyle}" Content="CE" Command="{Binding ClearCommand}"/>
+                <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ButtonOperStyle}" Content="+" Command="{Binding OperationCommand}" CommandParameter="+"/>
+                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource ButtonOperStyle}" Content="-" Command="{Binding OperationCommand}" CommandParameter="-"/>
+                <Button Grid.Row="0" Grid.Column="3" Style="{StaticResource ButtonOperStyle}" Content="x" Command="{Binding OperationCommand}" CommandParameter="x"/>
+                <Button Grid.Row="0" Grid.Column="4" Style="{StaticResource ButtonOperStyle}" Content=":" Command="{Binding OperationCommand}" CommandParameter=":"/>
+                <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource ButtonOperStyle}" Content="√" Command="{Binding OperationCommand}" CommandParameter="√"/>
+                <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource BaseButtonStyle}" Content="7" Command="{Binding NumberCommand}" CommandParameter="7"/>
+                <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource BaseButtonStyle}" Content="8" Command="{Binding NumberCommand}" CommandParameter="8"/>
+                <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource BaseButtonStyle}" Content="9" Command="{Binding NumberCommand}" CommandParameter="9"/>
+                <Button Grid.Row="1" Grid.Column="4" Style="{StaticResource ButtonEqStyle}" Grid.RowSpan ="4" Content="=" Command="{Binding ConfirmationCommand}"/>
+                <Button Grid.Row="2" Grid.Column="0" Style="{StaticResource ButtonOperStyle}" Content="xⁿ" Command="{Binding NumberCommand}" CommandParameter="^"/>
+                <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource BaseButtonStyle}" Content="4" Command="{Binding NumberCommand}" CommandParameter="4"/>
+                <Button Grid.Row="2" Grid.Column="2" Style="{StaticResource BaseButtonStyle}" Content="5" Command="{Binding NumberCommand}" CommandParameter="5"/>
+                <Button Grid.Row="2" Grid.Column="3" Style="{StaticResource BaseButtonStyle}" Content="6" Command="{Binding NumberCommand}" CommandParameter="6"/>
+                <Button Grid.Row="3" Grid.Column="0" Style="{StaticResource ButtonOperStyle}" Content="(" Command="{Binding NumberCommand}" CommandParameter="("/>
+                <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource BaseButtonStyle}" Content="1" Command="{Binding NumberCommand}" CommandParameter="1"/>
+                <Button Grid.Row="3" Grid.Column="2" Style="{StaticResource BaseButtonStyle}" Content="2" Command="{Binding NumberCommand}" CommandParameter="2"/>
+                <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource BaseButtonStyle}" Content="3" Command="{Binding NumberCommand}" CommandParameter="3"/>
+                <Button Grid.Row="4" Grid.Column="0" Style="{StaticResource ButtonOperStyle}" Content=")" Command="{Binding NumberCommand}" CommandParameter=")"/>
+                <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource BaseButtonStyle}" Content="0" Command="{Binding NumberCommand}" CommandParameter="0"/>
+                <Button Grid.Row="4" Grid.Column="2" Style="{StaticResource BaseButtonStyle}" Content="." Command="{Binding NumberCommand}" CommandParameter="."/>
+                <Button Grid.Row="4" Grid.Column="3" Style="{StaticResource BaseButtonStyle}" Content="⌫" Command="{Binding RemoveCommand}"/>
+            </Grid>
+            <Button Grid.Row="4" Content="SCAN" Click="ReadDisplay"/>
+        </Grid>
+    </Border>
 </Window>
