@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator"
+        xmlns:svg="http://sharpvectors.codeplex.com/runtime/"
+        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         mc:Ignorable="d"
         Title="UltraCalculator" 
         WindowStyle="None"
@@ -13,6 +15,9 @@
         Width="700">
 
     <Window.Resources>
+        
+        
+       
         <Style x:Key="BaseButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#333"/>
             <Setter Property="Foreground" Value="#DDD"/>
@@ -116,6 +121,55 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="ButtonOperStyleBL" TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonOperStyle}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="Transparent" 
+                            BorderThickness="0"
+                            CornerRadius="10"
+                        >
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                            />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#484848"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonFuncStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="Background" Value="#FFBF00"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="Transparent" 
+                            BorderThickness="0"
+                            CornerRadius="0,12,12,0"
+                        >
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                            />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#E5AB00"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="MainTextBox" TargetType="{x:Type TextBox}">
             <Setter Property="Background" Value="#444"/>
             <Setter Property="Foreground" Value="#DDD"/>
@@ -142,88 +196,113 @@
         </Style>
     </Window.Resources>
     <Border>
-        <Grid Background="#444">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="60"/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <DockPanel Grid.Row="0" Background="Transparent" Height="30" MouseDown="DragWindow" Grid.ColumnSpan="5">
-                <TextBlock Text="UltraCalculator" Foreground="#DDD" VerticalAlignment="Center" Margin="10,0"/>
-                <Button
-                Content="X"
-                Width="40"
-                Background="Maroon"
-                Foreground="#DDD"
-                BorderThickness="0"
-                HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center"
-                ToolTip="Close"
-                DockPanel.Dock="Right"
-                HorizontalAlignment="Right"
-                Click="CloseApp"
-            />
-            </DockPanel>
-            <TextBox
-            Style="{StaticResource EqTextBox}"
-            Grid.Row="1"
-            Grid.ColumnSpan="5"
-            Text="{Binding LastExpression}"
-            IsReadOnly="True"
-            Height="40"
-        />
-            <TextBox 
-            Style="{StaticResource MainTextBox}"
-            Grid.Row="2"
-            Grid.ColumnSpan="5"
-            Text="{Binding Display, Mode=OneWay}"
-            IsReadOnly="True"
-            Height="80"
-        />
-            <Grid Grid.Row="3" Margin="5">
+
+            <Border CornerRadius="10" Background="#444">
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0" Background="Transparent" Height="30" MouseDown="DragWindow" Grid.ColumnSpan="5">
+                        <TextBlock Text="UltraCalculator" Foreground="#DDD" VerticalAlignment="Center" Margin="10,0"/>
+                        <Button
+                        Content="X"
+                        Width="40"
+                        Background="Maroon"
+                        Foreground="#DDD"
+                        BorderThickness="0"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        ToolTip="Close"
+                        DockPanel.Dock="Right"
+                        HorizontalAlignment="Right"
+                        Click="CloseApp"
+                    />
+                    </DockPanel>
+                    <TextBox
+                    Style="{StaticResource EqTextBox}"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="5"
+                    Text="{Binding LastExpression}"
+                    IsReadOnly="True"
+                    Height="40"
+                    />
+                    <TextBox 
+                    Style="{StaticResource MainTextBox}"
+                    Grid.Row="2"
+                    Grid.ColumnSpan="5"
+                    Text="{Binding Display, Mode=OneWay}"
+                    IsReadOnly="True"
+                    Height="80"
+                    />
+                    <Grid Grid.Row="3" Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource ButtonEqStyle}" Content="CE" Command="{Binding ClearCommand}"/>
+                        <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ButtonOperStyle}" Content="+" Command="{Binding OperationCommand}" CommandParameter="+"/>
+                        <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource ButtonOperStyle}" Content="-" Command="{Binding OperationCommand}" CommandParameter="-"/>
+                        <Button Grid.Row="0" Grid.Column="3" Style="{StaticResource ButtonOperStyle}" Content="x" Command="{Binding OperationCommand}" CommandParameter="x"/>
+                        <Button Grid.Row="0" Grid.Column="4" Style="{StaticResource ButtonOperStyle}" Content=":" Command="{Binding OperationCommand}" CommandParameter=":"/>
+                        <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource ButtonOperStyle}" Content="√" Command="{Binding OperationCommand}" CommandParameter="√"/>
+                        <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource BaseButtonStyle}" Content="7" Command="{Binding NumberCommand}" CommandParameter="7"/>
+                        <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource BaseButtonStyle}" Content="8" Command="{Binding NumberCommand}" CommandParameter="8"/>
+                        <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource BaseButtonStyle}" Content="9" Command="{Binding NumberCommand}" CommandParameter="9"/>
+                        <Button Grid.Row="1" Grid.Column="4" Style="{StaticResource ButtonEqStyle}" Grid.RowSpan ="4" Content="=" Command="{Binding ConfirmationCommand}"/>
+                        <Button Grid.Row="2" Grid.Column="0" Style="{StaticResource ButtonOperStyle}" Content="xⁿ" Command="{Binding NumberCommand}" CommandParameter="^"/>
+                        <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource BaseButtonStyle}" Content="4" Command="{Binding NumberCommand}" CommandParameter="4"/>
+                        <Button Grid.Row="2" Grid.Column="2" Style="{StaticResource BaseButtonStyle}" Content="5" Command="{Binding NumberCommand}" CommandParameter="5"/>
+                        <Button Grid.Row="2" Grid.Column="3" Style="{StaticResource BaseButtonStyle}" Content="6" Command="{Binding NumberCommand}" CommandParameter="6"/>
+                        <Button Grid.Row="3" Grid.Column="0" Style="{StaticResource ButtonOperStyle}" Content="(" Command="{Binding NumberCommand}" CommandParameter="("/>
+                        <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource BaseButtonStyle}" Content="1" Command="{Binding NumberCommand}" CommandParameter="1"/>
+                        <Button Grid.Row="3" Grid.Column="2" Style="{StaticResource BaseButtonStyle}" Content="2" Command="{Binding NumberCommand}" CommandParameter="2"/>
+                        <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource BaseButtonStyle}" Content="3" Command="{Binding NumberCommand}" CommandParameter="3"/>
+                        <Button Grid.Row="4" Grid.Column="0" Style="{StaticResource ButtonOperStyleBL}" Content=")" Command="{Binding NumberCommand}" CommandParameter=")"/>
+                        <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource BaseButtonStyle}" Content="0" Command="{Binding NumberCommand}" CommandParameter="0"/>
+                        <Button Grid.Row="4" Grid.Column="2" Style="{StaticResource BaseButtonStyle}" Content="." Command="{Binding NumberCommand}" CommandParameter="."/>
+                        <Button Grid.Row="4" Grid.Column="3" Style="{StaticResource BaseButtonStyle}" Content="⌫" Command="{Binding RemoveCommand}"/>
+                    </Grid>
+                </Grid>
+            </Border>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource ButtonEqStyle}" Content="CE" Command="{Binding ClearCommand}"/>
-                <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ButtonOperStyle}" Content="+" Command="{Binding OperationCommand}" CommandParameter="+"/>
-                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource ButtonOperStyle}" Content="-" Command="{Binding OperationCommand}" CommandParameter="-"/>
-                <Button Grid.Row="0" Grid.Column="3" Style="{StaticResource ButtonOperStyle}" Content="x" Command="{Binding OperationCommand}" CommandParameter="x"/>
-                <Button Grid.Row="0" Grid.Column="4" Style="{StaticResource ButtonOperStyle}" Content=":" Command="{Binding OperationCommand}" CommandParameter=":"/>
-                <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource ButtonOperStyle}" Content="√" Command="{Binding OperationCommand}" CommandParameter="√"/>
-                <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource BaseButtonStyle}" Content="7" Command="{Binding NumberCommand}" CommandParameter="7"/>
-                <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource BaseButtonStyle}" Content="8" Command="{Binding NumberCommand}" CommandParameter="8"/>
-                <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource BaseButtonStyle}" Content="9" Command="{Binding NumberCommand}" CommandParameter="9"/>
-                <Button Grid.Row="1" Grid.Column="4" Style="{StaticResource ButtonEqStyle}" Grid.RowSpan ="4" Content="=" Command="{Binding ConfirmationCommand}"/>
-                <Button Grid.Row="2" Grid.Column="0" Style="{StaticResource ButtonOperStyle}" Content="xⁿ" Command="{Binding NumberCommand}" CommandParameter="^"/>
-                <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource BaseButtonStyle}" Content="4" Command="{Binding NumberCommand}" CommandParameter="4"/>
-                <Button Grid.Row="2" Grid.Column="2" Style="{StaticResource BaseButtonStyle}" Content="5" Command="{Binding NumberCommand}" CommandParameter="5"/>
-                <Button Grid.Row="2" Grid.Column="3" Style="{StaticResource BaseButtonStyle}" Content="6" Command="{Binding NumberCommand}" CommandParameter="6"/>
-                <Button Grid.Row="3" Grid.Column="0" Style="{StaticResource ButtonOperStyle}" Content="(" Command="{Binding NumberCommand}" CommandParameter="("/>
-                <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource BaseButtonStyle}" Content="1" Command="{Binding NumberCommand}" CommandParameter="1"/>
-                <Button Grid.Row="3" Grid.Column="2" Style="{StaticResource BaseButtonStyle}" Content="2" Command="{Binding NumberCommand}" CommandParameter="2"/>
-                <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource BaseButtonStyle}" Content="3" Command="{Binding NumberCommand}" CommandParameter="3"/>
-                <Button Grid.Row="4" Grid.Column="0" Style="{StaticResource ButtonOperStyle}" Content=")" Command="{Binding NumberCommand}" CommandParameter=")"/>
-                <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource BaseButtonStyle}" Content="0" Command="{Binding NumberCommand}" CommandParameter="0"/>
-                <Button Grid.Row="4" Grid.Column="2" Style="{StaticResource BaseButtonStyle}" Content="." Command="{Binding NumberCommand}" CommandParameter="."/>
-                <Button Grid.Row="4" Grid.Column="3" Style="{StaticResource BaseButtonStyle}" Content="⌫" Command="{Binding RemoveCommand}"/>
+                <Button Grid.Row="1" ToolTip="Scan" Style="{StaticResource ButtonFuncStyle}" Click="ReadDisplay">
+                    <Viewbox Stretch="Uniform" Width="45" Height="45" Margin="0,0,3,4">
+                        <Path 
+                            Fill="#212121"
+                            Data="M3 7.5C3 5.01472 5.01472 3 7.5 3H24.5C26.9853 3 29 5.01472 29 7.5V24.5C29 26.9853 26.9853 29 24.5 29H7.5C5.01472 29 3 26.9853 3 24.5V7.5ZM7.5 5C6.11929 5 5 6.11929 5 7.5V24.5C5 25.8807 6.11929 27 7.5 27H24.5C25.8807 27 27 25.8807 27 24.5V7.5C27 6.11929 25.8807 5 24.5 5H7.5ZM16 8C16.5523 8 17 8.44772 17 9V10.083C19.5125 10.5045 21.4955 12.4875 21.917 15H23C23.5523 15 24 15.4477 24 16C24 16.5523 23.5523 17 23 17H21.917C21.4955 19.5125 19.5125 21.4955 17 21.917V23C17 23.5523 16.5523 24 16 24C15.4477 24 15 23.5523 15 23V21.917C12.4875 21.4955 10.5045 19.5125 10.083 17H9C8.44772 17 8 16.5523 8 16C8 15.4477 8.44772 15 9 15H10.083C10.5045 12.4875 12.4875 10.5045 15 10.083V9C15 8.44772 15.4477 8 16 8ZM16 12C13.7909 12 12 13.7909 12 16C12 18.2091 13.7909 20 16 20C18.2091 20 20 18.2091 20 16C20 13.7909 18.2091 12 16 12ZM16 18C17.1046 18 18 17.1046 18 16C18 14.8954 17.1046 14 16 14C14.8954 14 14 14.8954 14 16C14 17.1046 14.8954 18 16 18Z"
+                        />
+                    </Viewbox>
+                </Button>
             </Grid>
-            <Button Grid.Row="4" Content="SCAN" Click="ReadDisplay"/>
         </Grid>
     </Border>
 </Window>

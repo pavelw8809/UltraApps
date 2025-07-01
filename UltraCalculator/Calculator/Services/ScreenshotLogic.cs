@@ -38,5 +38,20 @@ namespace Calculator.Services
             ms.Seek(0, SeekOrigin.Begin);
             return new Bitmap(ms);
         }
+
+        public static Bitmap ResizeBitmap(Bitmap input, double scale)
+        {
+            int newWidth = (int)(input.Width * scale);
+            int newHeight = (int)(input.Height * scale);
+            var resizedBitmap = new Bitmap(newWidth, newHeight);
+
+            using (var g = Graphics.FromImage(resizedBitmap))
+            {
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.DrawImage(input, 0, 0, newWidth, newHeight);
+            }
+
+            return resizedBitmap;
+        }
     }
 }

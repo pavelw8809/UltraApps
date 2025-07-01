@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="True"
-        Background="#01000000"
+        Background="#40000000"
         Topmost="True"
         WindowState="Maximized"
         ShowInTaskbar="False"
@@ -17,6 +17,7 @@
             x:Name="SelectionRectangle"
             Stroke="Red"
             StrokeThickness="2"
+            StrokeDashArray="4,2"
             Fill="#33FF0000"
             Visibility="Collapsed"
         />

@@ -51,10 +51,6 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "dependencies": {
-            "IronOcr": {
-              "target": "Package",
-              "version": "[2025.6.4, )"
-            },
             "NCalcSync": {
               "target": "Package",
               "version": "[5.4.2, )"
@@ -62,6 +58,14 @@
             "System.Drawing.Common": {
               "target": "Package",
               "version": "[9.0.6, )"
+            },
+            "Tesseract": {
+              "target": "Package",
+              "version": "[5.2.0, )"
+            },
+            "Tesseract.Drawing": {
+              "target": "Package",
+              "version": "[5.2.0, )"
             }
           },
           "imports": [
