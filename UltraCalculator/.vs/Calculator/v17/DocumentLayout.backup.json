@@ -61,8 +61,7 @@
               "ToolTip": "C:\\Users\\PWieczorek\\Projects\\UltraApps\\UltraCalculator\\Calculator\\View\\SelectionWindow.xaml",
               "RelativeToolTip": "Calculator\\View\\SelectionWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-23T09:53:28.129Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-23T09:53:28.129Z"
             },
             {
               "$type": "Document",
@@ -74,8 +73,7 @@
               "RelativeToolTip": "Calculator\\View\\SelectionWindow.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-23T09:55:40.983Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-23T09:55:40.983Z"
             },
             {
               "$type": "Document",
@@ -87,8 +85,7 @@
               "RelativeToolTip": "Calculator\\View\\MainWindow.xaml.cs",
               "ViewState": "AgIAABkAAAAAAAAAAAAAAD8AAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T17:27:27.435Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-17T17:27:27.435Z"
             },
             {
               "$type": "Document",
@@ -124,8 +121,7 @@
               "RelativeToolTip": "Calculator\\Services\\ScreenshotLogic.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-23T10:31:08.932Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-23T10:31:08.932Z"
             },
             {
               "$type": "Document",
@@ -137,8 +133,7 @@
               "RelativeToolTip": "Calculator\\Commands\\CalculatorCommand.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAcAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T09:34:02.887Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-18T09:34:02.887Z"
             },
             {
               "$type": "Document",
@@ -149,8 +144,7 @@
               "ToolTip": "C:\\Users\\PWieczorek\\Projects\\UltraApps\\UltraCalculator\\Calculator\\Calculator.csproj",
               "RelativeToolTip": "Calculator\\Calculator.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-06-17T17:42:50.015Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-17T17:42:50.015Z"
             }
           ]
         },
@@ -181,8 +175,7 @@
               "RelativeToolTip": "Calculator\\Model\\CalculatorModel.cs",
               "ViewState": "AgIAAB8AAAAAAAAAAAAgwCgAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T17:32:59.505Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-17T17:32:59.505Z"
             }
           ]
         }
